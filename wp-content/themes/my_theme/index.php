@@ -2,6 +2,7 @@
 
 
 <?php if(have_posts()){ ?>
+
 <?php while(have_posts()){  ?>
 <?php the_post(); ?>
 
@@ -10,17 +11,28 @@
 </h2>
 
 <div>
-    Posted on
-    <a href="<?php echo get_permalink(); ?>">
-        <time><?php echo get_the_date('l,F,j,Y'); ?></time>
-    </a>
+    <?php my_first_theme_post_meta(); ?>
 
 </div>
+<div>
+    <?php the_excerpt( ); ?>
+</div>
+<?php my_first_theme_read_more_link(); ?>
+
+
 <?php }  ?>
+
+<?php the_posts_pagination( ); ?>
 <?php } else { ?>
-<p>Sorry, no posts match your critaria .</p>
+<p><?php _e('Sorry, no posts match your critaria .','my_first_theme'); ?></p>
 <?php } ?>
 
+<?php
+
+    $comments= 3;
+    printf(_n('One Comment','%s comments', $comments ,'my_first_theme'), $comments);
+
+?>
 
 
 
